@@ -1,0 +1,132 @@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <div class="container">  
+   <div class="row">
+    <div class="col-md-6">
+      <form class="contact">
+        <h3>Venue Form</h3>
+        <h4>* All fields are Mandatory</h4>
+        <fieldset>
+          <input placeholder="Enter Venue Name" [(ngModel)]="updateData.venueName" type="text" name="venueName" required  minlength="3"  maxlength="15" #venueName="ngModel">
+
+          <div *ngIf="venueName.invalid">
+            <div *ngIf="venueName.errors?.required && venueName.touched">
+              Venue Name is required
+            </div>
+            <div *ngIf="venueName.errors?.minlength && venueName.touched">
+              Enter valid Venue Name
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Enter Venue Location" [(ngModel)]="updateData.location" type="text" name="location" required  minlength="4"  maxlength="15" #location="ngModel" >
+          <div *ngIf="location.invalid">
+            <div *ngIf="location.errors?.required && location.touched">
+              Location is required
+            </div>
+            <div *ngIf="location.errors?.minlength && location.touched">
+              Enter valid Location
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Enter City" [(ngModel)]="updateData.city" type="text" name="city" required  minlength="3"  maxlength="10" #city="ngModel">
+          <div *ngIf="city.invalid">
+            <div *ngIf="city.errors?.required && city.touched">
+              City is required
+            </div>
+            <div *ngIf="city.errors?.minlength && city.touched">
+              Enter valid City
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Enter Venue Price" [(ngModel)]="updateData.price" type="text" name="price" required pattern="[0-9]{3,6}" maxlength="6"  #price="ngModel">
+          <div *ngIf="price.invalid">
+            <div *ngIf="price.errors?.required && price.touched">
+              Price is required
+            </div>
+            <div *ngIf="price.errors?.pattern && price.touched">
+              Enter valid Price
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Enter Capacity of venue" [(ngModel)]="updateData.capacity" type="text" name="capacity" required pattern= "[0-9]{3,6}" maxlength="6" #capacity="ngModel">
+          <div *ngIf="capacity.invalid">
+            <div *ngIf="capacity.errors?.required && capacity.touched">
+              Capacity is required
+            </div>
+            <div *ngIf="capacity.errors?.pattern && capacity.touched">
+              Enter valid Capacity 
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Enter Rating of venue" [(ngModel)]="updateData.venue_rating" type="text" name="rating"  required  maxlength="3" #rating="ngModel">
+          <div *ngIf="rating.invalid">
+            <div *ngIf="rating.errors?.required && rating.touched">
+              Rating is required
+            </div>
+          </div>
+        </fieldset>
+        Select type&nbsp;&nbsp;<select class="selectpicker" [(ngModel)]="updateData.type" name="type">
+          <option>Banquet Hall</option>
+          <option>Party Lounge</option>
+          <option>Farm House</option>
+          <option>Hotel</option>
+        </select>
+        <fieldset>
+          <h4>File Upload</h4>
+          <input type="file" (change)=onFileSelected($event) >
+          <button class="submit" (click)="upload()">upload</button>
+        </fieldset>
+        <fieldset>
+          <button name="submit" type="submit"  id="submit" (click)="onSubmit(updateData)">Submit</button>
+        </fieldset>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <form class="contact">
+        <h3>Catering Form</h3>
+        <h4>* All fields are Mandatory</h4>
+        <fieldset>
+          <input placeholder="Enter Catering Provider Name" [(ngModel)]="updateCatering.cateringProvider" type="text" name="cateringProvider" required>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Enter Location of Catering Provider" [(ngModel)]="updateCatering.location" type="text" name="location" required>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Enter city of Catering Provider" [(ngModel)]="updateCatering.city" type="text" name="city" required #city="ngModel">
+        </fieldset>
+        <fieldset>
+          <input placeholder="Enter Rating of Provider" [(ngModel)]="updateCatering.rating" type="text" name="rating" required >
+        </fieldset>
+        <fieldset>
+          <input placeholder="Enter ContactNo of Catering Provider" [(ngModel)]="updateCatering.contactNo" type="text" name="contactNo" required   required pattern="[789][0-9]{9}" #contactNo='ngModel'>
+        </fieldset>
+        <div *ngIf="contactNo.invalid">
+          <div *ngIf="contactNo.errors?.required && contactNo.touched">
+            Contact No is required
+          </div>
+          <div *ngIf="contactNo.errors?.pattern && contactNo.touched">
+            Please Enter valid Contact No
+          </div>
+        </div>
+        <fieldset>
+          <input placeholder="Enter Charges of Catering Provider" [(ngModel)]="updateCatering.price" type="text" name="price" required>
+        </fieldset>
+        <fieldset>
+          <!-- <textarea class="form-control" rows="5" id="comment"></textarea> -->
+          <input placeholder="Enter Description of Catering Provider" [(ngModel)]="updateCatering.description" type="text" name="description" required>
+        </fieldset>
+        <fieldset>
+          <h4>File Upload</h4>
+          <input type="file" (change)=onFileSelected($event) >
+          <button class="submit" (click)="upload()">upload</button>
+        </fieldset>
+        <button name="submit" type="submit"  (click)="onClick(updateCatering)">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
